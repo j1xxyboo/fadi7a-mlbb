@@ -7,6 +7,7 @@ import PostDetail from "./components/PostDetail";
 import UploadModal from "./components/UploadModal";
 import { FeedFilter, usePosts } from "./hooks/usePosts";
 import { useTheme } from "./hooks/useTheme";
+import { useCurrentUser } from "./hooks/useCurrentUser";
 import Profile from "./pages/Profile";
 import { Post } from "./types";
 
@@ -24,6 +25,7 @@ export default function App() {
     addComment,
   } = usePosts();
   const { theme, toggleTheme } = useTheme();
+  const currentUser = useCurrentUser();
   const [page, setPage] = useState<Page>("home");
   const [filter, setFilter] = useState<FeedFilter>("latest");
   const [searchQuery, setSearchQuery] = useState("");
@@ -63,6 +65,7 @@ export default function App() {
   return (
     <div className="min-h-screen">
       <Navbar
+        currentUser={currentUser}
         theme={theme}
         toggleTheme={toggleTheme}
         onOpenUpload={() => setUploadOpen(true)}

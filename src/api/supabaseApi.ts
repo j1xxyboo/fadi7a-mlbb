@@ -94,7 +94,7 @@ export async function fetchPosts(
   if (error) throw error;
   if (!postRows || postRows.length === 0) return { posts: [], hasMore: false };
 
-  const postIds = postRows.map((p) => p.id);
+  const postIds = (postRows as PostRow[]).map((p) => p.id);
 
   const [{ data: commentRows, error: commentsError }, { data: likeRows, error: likesError }] =
     await Promise.all([
@@ -109,7 +109,7 @@ export async function fetchPosts(
   if (commentsError) throw commentsError;
   if (likesError) throw likesError;
 
-  const likedPostIds = new Set((likeRows ?? []).map((l) => l.post_id));
+  const likedPostIds = new Set((likeRows ?? []).map((l: { post_id: string }) => l.post_id));
   const commentsByPost = new Map<string, Comment[]>();
   for (const row of (commentRows ?? []) as CommentRow[]) {
     const list = commentsByPost.get(row.post_id) ?? [];
@@ -133,7 +133,7 @@ export async function fetchTrendingPosts(visitorId: string): Promise<Post[]> {
   if (error) throw error;
   if (!postRows || postRows.length === 0) return [];
 
-  const postIds = postRows.map((p) => p.id);
+  const postIds = (postRows as PostRow[]).map((p) => p.id);
   const { data: likeRows, error: likesError } = await supabase
     .from("likes")
     .select("post_id")
@@ -141,7 +141,7 @@ export async function fetchTrendingPosts(visitorId: string): Promise<Post[]> {
     .eq("visitor_id", visitorId);
   if (likesError) throw likesError;
 
-  const likedPostIds = new Set((likeRows ?? []).map((l) => l.post_id));
+  const likedPostIds = new Set((likeRows ?? []).map((l: { post_id: string }) => l.post_id));
   return (postRows as PostRow[]).map((row) => mapPost(row, [], likedPostIds.has(row.id)));
 }
 
