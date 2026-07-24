@@ -1,18 +1,20 @@
 import { useEffect } from "react";
-import { Comment, Post, User } from "../types";
+import { Post } from "../types";
 import Avatar from "./Avatar";
 import CommentSection from "./CommentSection";
 import { CloseIcon, HeartIcon } from "./Icons";
 
 interface Props {
   post: Post | null;
-  currentUser: User;
   onClose: () => void;
   onLike: (id: string) => void;
-  onAddComment: (id: string, comment: Comment) => void;
+  onAddComment: (
+    id: string,
+    comment: { text: string; anonymous: boolean; username?: string; avatarColor?: string }
+  ) => void;
 }
 
-export default function PostDetail({ post, currentUser, onClose, onLike, onAddComment }: Props) {
+export default function PostDetail({ post, onClose, onLike, onAddComment }: Props) {
   useEffect(() => {
     if (!post) return;
     const h = (e: KeyboardEvent) => {
@@ -23,16 +25,6 @@ export default function PostDetail({ post, currentUser, onClose, onLike, onAddCo
   }, [post, onClose]);
 
   if (!post) return null;
-
-  const addComment = (text: string, anonymous: boolean) =>
-    onAddComment(post.id, {
-      id: `c-${Date.now().toString(36)}`,
-      anonymous,
-      username: anonymous ? undefined : currentUser.username,
-      avatarColor: anonymous ? undefined : currentUser.avatarColor,
-      text,
-      timestamp: "Just now",
-    });
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
@@ -107,7 +99,10 @@ export default function PostDetail({ post, currentUser, onClose, onLike, onAddCo
 
           <div className="my-3 border-t border-zinc-200 dark:border-white/10" />
 
-          <CommentSection comments={post.comments} currentUser={currentUser} onAdd={addComment} />
+          <CommentSection
+            comments={post.comments}
+            onAdd={(comment) => onAddComment(post.id, comment)}
+          />
         </div>
       </div>
     </div>
