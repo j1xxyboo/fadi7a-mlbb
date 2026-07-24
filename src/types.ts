@@ -1,5 +1,7 @@
 export type MediaType = "image" | "video";
 
+export type PostStatus = "pending" | "approved" | "rejected";
+
 export interface User {
   username: string;
   avatarColor: string;
@@ -32,4 +34,12 @@ export interface Post {
   likes: number;
   liked?: boolean;
   comments: Comment[];
+  /**
+   * Moderation status. Posts submitted by users start as "pending" and only
+   * appear in the public feed once an admin sets them to "approved". This
+   * field is optional on the client Post model because the public feed API
+   * only ever returns already-approved posts (status is implied there) —
+   * it's populated explicitly in the admin dashboard views.
+   */
+  status?: PostStatus;
 }

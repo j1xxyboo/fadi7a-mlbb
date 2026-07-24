@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Feed from "./components/Feed";
 import FilterTabs from "./components/FilterTabs";
 import MobileNav from "./components/MobileNav";
@@ -9,11 +9,28 @@ import { FeedFilter, usePosts } from "./hooks/usePosts";
 import { useTheme } from "./hooks/useTheme";
 import { useCurrentUser } from "./hooks/useCurrentUser";
 import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
 import { Post } from "./types";
 
 type Page = "home" | "profile";
 
+// The admin dashboard is reached at yoursite.com/#admin — a plain hash
+// route so it doesn't need a router dependency. It renders standalone,
+// outside the normal Navbar/Feed/MobileNav layout, and re-checks the
+// hash on every change so visiting/leaving #admin works without a reload.
+function useIsAdminRoute(): boolean {
+  const [isAdmin, setIsAdmin] = useState(() => window.location.hash === "#admin");
+  useEffect(() => {
+    const onHashChange = () => setIsAdmin(window.location.hash === "#admin");
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
+  return isAdmin;
+}
+
 export default function App() {
+  const isAdminRoute = useIsAdminRoute();
+
   const {
     posts,
     trendingPosts,
@@ -38,7 +55,6 @@ export default function App() {
     for (const p of trendingPosts) if (!byId.has(p.id)) byId.set(p.id, p);
     return byId;
   }, [posts, trendingPosts]);
-
   const activePost = activePostId ? allKnownPosts.get(activePostId) ?? null : null;
 
   const visiblePosts = useMemo(() => {
@@ -61,6 +77,10 @@ export default function App() {
   }, [posts, trendingPosts, filter, searchQuery]);
 
   const openPost = (post: Post) => setActivePostId(post.id);
+
+  if (isAdminRoute) {
+    return <Admin />;
+  }
 
   return (
     <div className="min-h-screen">
