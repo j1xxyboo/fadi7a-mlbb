@@ -19,23 +19,23 @@ export default function Profile({ user, posts, onOpen }: Props) {
         <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:text-left">
           <Avatar username={user.username} color={user.avatarColor} size={88} />
           <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-extrabold tracking-tight">@{user.username}</h1>
+            <h1 className="display-title text-3xl">@{user.username}</h1>
             {user.bio && (
               <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{user.bio}</p>
             )}
             <div className="mt-4 flex justify-center gap-8 sm:justify-start">
               <div>
                 <p className="text-xl font-bold">{own.length}</p>
-                <p className="text-xs text-zinc-500">Posts</p>
+                <p className="text-xs uppercase tracking-wider text-zinc-500">Posts</p>
               </div>
               <div>
                 <p className="text-xl font-bold">{likesReceived}</p>
-                <p className="text-xs text-zinc-500">Likes received</p>
+                <p className="text-xs uppercase tracking-wider text-zinc-500">Likes received</p>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-6 flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-3 text-sm text-violet-700 dark:text-violet-300">
+        <div className="mt-6 flex items-center gap-2 rounded-xl border border-red-600/30 bg-red-600/10 px-4 py-3 text-sm text-red-700 dark:text-red-400">
           <GhostIcon width={18} height={18} className="shrink-0" />
           <span>
             Anonymous posts never appear on profiles. What's posted in the shadows stays in the
@@ -44,7 +44,7 @@ export default function Profile({ user, posts, onOpen }: Props) {
         </div>
       </div>
 
-      <h2 className="mb-4 mt-8 text-lg font-bold">Public posts</h2>
+      <h2 className="display-title mb-4 mt-8 text-xl">Public posts</h2>
       {own.length === 0 ? (
         <EmptyState message="No public posts yet." />
       ) : (

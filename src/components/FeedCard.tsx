@@ -74,7 +74,7 @@ export default function FeedCard({ post, onOpen, onLike }: Props) {
               </span>
             </span>
             {post.duration && (
-              <span className="absolute bottom-2 right-2 rounded-lg bg-black/70 px-2 py-0.5 text-xs font-medium text-white">
+              <span className="absolute bottom-2 right-2 rounded-md bg-black/70 px-2 py-0.5 text-xs font-semibold text-white">
                 {post.duration}
               </span>
             )}
@@ -95,7 +95,7 @@ export default function FeedCard({ post, onOpen, onLike }: Props) {
                 className={
                   post.anonymous
                     ? "font-semibold text-zinc-500 dark:text-zinc-400"
-                    : "font-semibold text-violet-600 dark:text-violet-400"
+                    : "font-semibold text-red-600 dark:text-red-500"
                 }
               >
                 {identity}
@@ -116,7 +116,7 @@ export default function FeedCard({ post, onOpen, onLike }: Props) {
           <button
             onClick={() => onLike(post.id)}
             className={`flex items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-zinc-100 dark:hover:bg-white/5 ${
-              post.liked ? "text-rose-500" : ""
+              post.liked ? "text-red-500" : ""
             }`}
             aria-label="Like"
           >
@@ -163,7 +163,7 @@ export default function FeedCard({ post, onOpen, onLike }: Props) {
                   </button>
                   <button
                     onClick={() => setMenuOpen(false)}
-                    className="flex w-full items-center gap-2 px-3 py-2 text-sm text-rose-500 hover:bg-zinc-100 dark:hover:bg-white/5"
+                    className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-zinc-100 dark:hover:bg-white/5"
                   >
                     <FlagIcon width={15} height={15} /> Report
                   </button>

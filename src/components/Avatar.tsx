@@ -10,7 +10,7 @@ interface AvatarProps {
 export default function Avatar({
   anonymous,
   username,
-  color = "#8b5cf6",
+  color = "#dc2626",
   size = 36,
 }: AvatarProps) {
   if (anonymous || !username) {

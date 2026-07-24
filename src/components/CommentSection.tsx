@@ -37,7 +37,7 @@ export default function CommentSection({ comments, currentUser, onAdd }: Props) 
                   className={
                     c.anonymous
                       ? "font-semibold text-zinc-500 dark:text-zinc-400"
-                      : "font-semibold text-violet-600 dark:text-violet-400"
+                      : "font-semibold text-red-600 dark:text-red-500"
                   }
                 >
                   {c.anonymous ? "Anonymous" : `@${c.username}`}
@@ -65,13 +65,13 @@ export default function CommentSection({ comments, currentUser, onAdd }: Props) 
             placeholder={
               anonymous ? "Comment as Anonymous…" : `Comment as @${currentUser.username}…`
             }
-            className="min-w-0 flex-1 rounded-xl border border-zinc-200 bg-zinc-100/80 px-3 py-2 text-sm outline-none transition-all focus:border-violet-500 dark:border-white/10 dark:bg-white/5"
+            className="min-w-0 flex-1 rounded-lg border border-zinc-200 bg-zinc-100/80 px-3 py-2 text-sm outline-none transition-all focus:border-red-600 dark:border-white/10 dark:bg-white/5"
           />
           <button
             onClick={() => setAnonymous((a) => !a)}
             title="Comment anonymously"
             aria-pressed={anonymous}
-            className={`shrink-0 rounded-xl p-2 transition-colors ${
+            className={`shrink-0 rounded-lg p-2 transition-colors ${
               anonymous
                 ? "accent-gradient text-white"
                 : "text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5"
@@ -82,7 +82,7 @@ export default function CommentSection({ comments, currentUser, onAdd }: Props) 
           <button
             onClick={submit}
             disabled={!text.trim()}
-            className="shrink-0 rounded-xl bg-violet-600 px-3 py-2 text-sm font-semibold text-white transition-opacity disabled:opacity-40"
+            className="shrink-0 rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white transition-opacity disabled:opacity-40"
           >
             Send
           </button>

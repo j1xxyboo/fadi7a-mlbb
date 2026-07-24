@@ -1,6 +1,10 @@
-# FADI7A MLBB
+# EXPOSED MLBB DZ
 
 Anonymous media-sharing platform — share images and videos anonymously or under your username. Frontend-only demo built with **React, TypeScript and Tailwind CSS**. All data is mocked; no backend, no real auth.
+
+## Branding
+
+The navbar and favicon load the logo from `public/logo.png`. Drop your logo file there (exact name `logo.png`); until it exists, the app falls back to a styled text wordmark.
 
 ## Features
 
@@ -9,7 +13,7 @@ Anonymous media-sharing platform — share images and videos anonymously or unde
 - Upload modal with drag & drop, caption character counter and a "Post anonymously" toggle
 - Post detail view with large media, video player and a comment section (comments can be anonymous too)
 - Profile page showing only non-anonymous posts
-- Dark theme by default with a light-mode toggle, glassmorphism cards, hover lift and fade-in micro-interactions
+- Dark theme by default with a light-mode toggle, red accent, film-grain texture and micro-interactions
 - Fully responsive: masonry grid on desktop, 2 columns on tablet, single column on mobile with a bottom navigation bar
 
 ## Getting started

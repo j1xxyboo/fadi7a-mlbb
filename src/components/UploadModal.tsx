@@ -67,10 +67,10 @@ export default function UploadModal({ open, onClose, onSubmit, currentUser }: Pr
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={close} />
-      <div className="glass animate-fade-in-up relative w-full max-w-lg rounded-xl bg-white/95 p-6 shadow-2xl dark:bg-[#14141e]">
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={close} />
+      <div className="glass animate-fade-in-up relative w-full max-w-lg rounded-xl p-6 shadow-2xl">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-bold">Create post</h2>
+          <h2 className="display-title text-xl">Create post</h2>
           <button
             onClick={close}
             className="rounded-lg p-1.5 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-white/5"
@@ -90,11 +90,11 @@ export default function UploadModal({ open, onClose, onSubmit, currentUser }: Pr
             onDrop={onDrop}
             className={`flex cursor-pointer flex-col items-center justify-center gap-3 rounded-xl border-2 border-dashed px-6 py-12 text-center transition-colors ${
               dragging
-                ? "border-violet-500 bg-violet-500/10"
-                : "border-zinc-300 hover:border-violet-400 dark:border-zinc-700"
+                ? "border-red-600 bg-red-600/10"
+                : "border-zinc-300 hover:border-red-500 dark:border-zinc-700"
             }`}
           >
-            <UploadIcon width={32} height={32} className="text-violet-500" />
+            <UploadIcon width={32} height={32} className="text-red-600" />
             <span className="text-sm font-medium">Drag & drop an image or video</span>
             <span className="text-xs text-zinc-500">or click to browse</span>
             <input
@@ -128,7 +128,7 @@ export default function UploadModal({ open, onClose, onSubmit, currentUser }: Pr
             onChange={(e) => setCaption(e.target.value)}
             rows={3}
             placeholder="Add a caption (optional)"
-            className="w-full resize-none rounded-xl border border-zinc-200 bg-zinc-100/80 p-3 text-sm outline-none transition-all focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30 dark:border-white/10 dark:bg-white/5"
+            className="w-full resize-none rounded-xl border border-zinc-200 bg-zinc-100/80 p-3 text-sm outline-none transition-all focus:border-red-600 focus:ring-2 focus:ring-red-600/25 dark:border-white/10 dark:bg-white/5"
           />
           <p className="mt-1 text-right text-xs text-zinc-500">
             {caption.length}/{MAX_CAPTION}
@@ -168,14 +168,14 @@ export default function UploadModal({ open, onClose, onSubmit, currentUser }: Pr
         <div className="mt-5 flex justify-end gap-2">
           <button
             onClick={close}
-            className="rounded-xl px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-white/5"
+            className="rounded-lg px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-white/5"
           >
             Cancel
           </button>
           <button
             onClick={submit}
             disabled={!previewUrl}
-            className="accent-gradient rounded-xl px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-violet-600/30 transition-all enabled:hover:scale-105 disabled:cursor-not-allowed disabled:opacity-40"
+            className="accent-gradient rounded-lg px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg shadow-red-600/25 transition-all enabled:hover:scale-105 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Post
           </button>

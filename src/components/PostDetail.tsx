@@ -37,7 +37,7 @@ export default function PostDetail({ post, currentUser, onClose, onLike, onAddCo
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={onClose} />
-      <div className="glass animate-fade-in-up relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl bg-white/95 shadow-2xl dark:bg-[#14141e] md:flex-row">
+      <div className="glass animate-fade-in-up relative flex max-h-[90vh] w-full max-w-5xl flex-col overflow-hidden rounded-xl shadow-2xl md:flex-row">
         <div className="flex max-h-[45vh] items-center justify-center bg-black md:max-h-none md:flex-1">
           {post.mediaType === "image" ? (
             <img
@@ -71,7 +71,7 @@ export default function PostDetail({ post, currentUser, onClose, onLike, onAddCo
                   className={
                     post.anonymous
                       ? "font-semibold text-zinc-500 dark:text-zinc-400"
-                      : "font-semibold text-violet-600 dark:text-violet-400"
+                      : "font-semibold text-red-600 dark:text-red-500"
                   }
                 >
                   {post.anonymous ? "Anonymous" : `@${post.username}`}
@@ -98,7 +98,7 @@ export default function PostDetail({ post, currentUser, onClose, onLike, onAddCo
           <button
             onClick={() => onLike(post.id)}
             className={`mt-3 flex w-fit items-center gap-1.5 rounded-lg px-2 py-1.5 text-sm transition-colors hover:bg-zinc-100 dark:hover:bg-white/5 ${
-              post.liked ? "text-rose-500" : "text-zinc-500 dark:text-zinc-400"
+              post.liked ? "text-red-500" : "text-zinc-500 dark:text-zinc-400"
             }`}
           >
             <HeartIcon filled={post.liked} width={18} height={18} />
