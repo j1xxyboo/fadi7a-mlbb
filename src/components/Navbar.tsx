@@ -46,7 +46,7 @@ export default function Navbar({
           <input
             value={searchQuery}
             onChange={(e) => onSearch(e.target.value)}
-            placeholder="Search posts, captions, users\u2026"
+            placeholder="Search posts, captions, users…"
             className="w-full rounded-xl border border-zinc-200 bg-zinc-100/80 py-2.5 pl-10 pr-4 text-sm outline-none transition-all placeholder:text-zinc-400 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30 dark:border-white/10 dark:bg-white/5"
           />
         </div>
