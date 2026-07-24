@@ -4,7 +4,17 @@
 
 @layer base {
   body {
-    @apply bg-zinc-100 text-zinc-900 antialiased transition-colors duration-300 dark:bg-ink dark:text-zinc-100;
+    @apply bg-zinc-100 font-sans text-zinc-900 antialiased transition-colors duration-300 dark:bg-ink dark:text-zinc-100;
+  }
+  /* subtle film grain to match the distressed logo */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   ::-webkit-scrollbar {
     width: 10px;
@@ -19,12 +29,15 @@
 
 @layer components {
   .glass {
-    @apply border border-zinc-200/70 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.05];
+    @apply border border-zinc-200 bg-white dark:border-white/[0.07] dark:bg-[#111114];
   }
   .accent-gradient {
-    @apply bg-gradient-to-r from-violet-600 via-purple-500 to-fuchsia-500;
+    @apply bg-gradient-to-br from-red-600 to-red-700;
   }
   .card-lift {
-    @apply transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-violet-600/20;
+    @apply transition-all duration-200 ease-out hover:-translate-y-1 hover:border-red-600/40 hover:shadow-xl hover:shadow-zinc-300/60 dark:hover:shadow-black/50;
+  }
+  .display-title {
+    @apply font-display uppercase tracking-wide;
   }
 }

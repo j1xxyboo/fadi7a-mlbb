@@ -5,7 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: "#0b0b12",
+        ink: "#0a0a0c",
+      },
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Anton", "ui-sans-serif", "sans-serif"],
       },
       keyframes: {
         "fade-in-up": {

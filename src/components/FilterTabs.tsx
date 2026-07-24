@@ -20,13 +20,13 @@ export default function FilterTabs({ active, onChange }: Props) {
         <button
           key={id}
           onClick={() => onChange(id)}
-          className={`flex items-center gap-2 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition-all ${
+          className={`flex items-center gap-2 whitespace-nowrap rounded-lg px-4 py-2 text-xs font-bold uppercase tracking-wider transition-all ${
             active === id
-              ? "accent-gradient text-white shadow-lg shadow-violet-600/25"
-              : "glass text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+              ? "accent-gradient text-white shadow-lg shadow-red-600/25"
+              : "glass text-zinc-600 hover:border-red-600/40 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
           }`}
         >
-          <Icon width={16} height={16} />
+          <Icon width={15} height={15} />
           {label}
         </button>
       ))}
