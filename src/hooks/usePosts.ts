@@ -116,7 +116,6 @@ export function usePosts() {
         anonymous: comment.anonymous,
         username: comment.username,
         avatarColor: comment.avatarColor,
-        visitorId,
       });
       const attach = (p: Post) => (p.id === id ? { ...p, comments: [...p.comments, created] } : p);
       setPosts((prev) => prev.map(attach));
